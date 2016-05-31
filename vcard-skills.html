@@ -1,0 +1,75 @@
+<!-- Imports polymer -->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-media-query/iron-media-query.html">
+<link rel="import" href="../vcard-skill-item/vcard-skill-item.html">
+<!-- Defines element markup -->
+<dom-module id="vcard-skills">
+    <template>
+        <style>
+        .skills-background[media-query-767] {
+            background-attachment: scroll;
+            background-position: top center!important;
+        }
+        
+        .skills-background {
+            background: url(./images/skills-bg-img.jpg) no-repeat;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -ms-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            padding: 0;
+            text-align: center;
+        }
+        .black-layer[media-query-767] {
+            padding: 80px 20px;
+        }
+        .black-layer {
+            background: rgba(0,0,0,.5);
+            width: 100%;
+            height: 100%;
+        }
+        </style>
+        <iron-media-query query="(max-width: 767px)" query-matches="{{mediaQuery767}}"></iron-media-query>
+        <div class="skills-background col-xs-12 col-sm-6" media-query-767$="{{mediaQuery767}}" data-mh$="{{matchHeight}}">
+            <div class="black-layer" media-query-767$="{{mediaQuery767}}">
+                <div class="middle-content">
+                    <template is="dom-repeat" items="[[listSkills]]">
+                        <vcard-skill-item skill="{{item.skill}}" class$="{{ setClass(index) }}" percent="{{item.percent}}" match-height="{{matchHeight}}-item"></vcard-skill-item>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </template>
+</dom-module>
+<!-- Registers custom element -->
+<script>
+Polymer({
+    is: 'vcard-skills', //Registramos el nombre del componente
+    properties: { //Propiedades del componente
+        listSkills: {
+            type: Array,
+            value: [{
+                skill: "Javascript",
+                percent: 90
+            }, {
+                skill: "NodeJS",
+                percent: 100
+            }, {
+                skill: "DOJO",
+                percent: 80
+            }, {
+                skill: "Git",
+                percent: 80
+            }]
+        },
+        matchHeight: {
+            type: String,
+            value: 'skill'
+        }
+    },
+    setClass: function(index){
+        return (index === this.listSkills.length-1) ? 'skill-elem last': 'skill-elem';
+    }
+});
+</script>
