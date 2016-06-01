@@ -19,7 +19,7 @@
   "license": "MIT",
   "ignore": [],
   "dependencies": {
-    "polymer": "Polymer/polymer#1.0.0",
+    "polymer": "Polymer/polymer#1.4.0",
     "vcard-skill-item": "https://github.com/ylinlee/vcard-skill-item.git#0.0.3"
   }
 }
