@@ -21,19 +21,32 @@
             padding: 0;
             text-align: center;
         }
+        
         .black-layer[media-query-767] {
             padding: 80px 20px;
         }
+        
         .black-layer {
-            background: rgba(0,0,0,.5);
+            background: rgba(0, 0, 0, .5);
             width: 100%;
             height: 100%;
         }
+        
+        .middle-content[media-query-768] {
+            position: relative;
+            top: 50%;
+            -webkit-transform: translate(0, -50%);
+            -moz-transform: translate(0, -50%);
+            -ms-transform: translate(0, -50%);
+            -o-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+        }
         </style>
         <iron-media-query query="(max-width: 767px)" query-matches="{{mediaQuery767}}"></iron-media-query>
+        <iron-media-query query="(min-width: 768px)" query-matches="{{mediaQuery768}}"></iron-media-query>
         <div class="skills-background col-xs-12 col-sm-6" media-query-767$="{{mediaQuery767}}" data-mh$="{{matchHeight}}">
             <div class="black-layer" media-query-767$="{{mediaQuery767}}">
-                <div class="middle-content">
+                <div class="middle-content" media-query-768$="{{mediaQuery768}}">
                     <template is="dom-repeat" items="[[listSkills]]">
                         <vcard-skill-item skill="{{item.skill}}" class$="{{ setClass(index) }}" percent="{{item.percent}}" match-height="{{matchHeight}}-item"></vcard-skill-item>
                     </template>
@@ -68,8 +81,8 @@ Polymer({
             value: 'skill'
         }
     },
-    setClass: function(index){
-        return (index === this.listSkills.length-1) ? 'skill-elem last': 'skill-elem';
+    setClass: function(index) {
+        return (index === this.listSkills.length - 1) ? 'skill-elem last' : 'skill-elem';
     }
 });
 </script>
